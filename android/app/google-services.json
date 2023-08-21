@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "613197274486",
+    "project_id": "stitch-craft-a34c6",
+    "storage_bucket": "stitch-craft-a34c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613197274486:android:1b1a70a81b176e7477ae57",
+        "android_client_info": {
+          "package_name": "com.example.stitch_craft"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "613197274486-etjr42dj8bk7sk5i2h8eil7cbeju762h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6PTrgb0mTaXlyGOom6lucp9L7AZ5Wh_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "613197274486-etjr42dj8bk7sk5i2h8eil7cbeju762h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
