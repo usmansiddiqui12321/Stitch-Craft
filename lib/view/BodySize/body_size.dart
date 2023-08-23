@@ -29,70 +29,72 @@ class BodySize extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Text(
-                "Enter your Sizes",
-                style: GoogleFonts.dmSerifDisplay(
-                    fontSize: 30, color: AppColors.primaryColor),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  "Enter your Sizes",
+                  style: GoogleFonts.dmSerifDisplay(
+                      fontSize: 30, color: AppColors.primaryColor),
+                ),
               ),
-            ),
-            SizesofBody(
-                firsttitle: "Neck",
-                secondtitle: "Chest",
-                firstController: neckController,
-                secondController: chestController),
-            const SizedBox(height: 20),
-            SizesofBody(
-                firsttitle: "Sleeve",
-                secondtitle: "waist",
-                firstController: sleeveLengthController,
-                secondController: waistController),
-            const SizedBox(height: 20),
-            SizesofBody(
-                firsttitle: "Hips",
-                secondtitle: "Inseam",
-                firstController: hipController,
-                secondController: inseamController),
-            const SizedBox(height: 20),
-            Center(
-              child: RoundButton(
-                onpress: () {
-                  FocusScope.of(context).unfocus();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PlaceOrder(
-                        tailoremail: tailoremail,
-                        tailorname: tailorname,
-                        tailorlocation: tailorlocation,
-                        price: price,
-                        hips: double.tryParse(hipController.text) ?? 0,
-                        inseam: double.tryParse(inseamController.text) ?? 0,
-                        sleeveLength:
-                            double.tryParse(sleeveLengthController.text) ?? 0,
-                        chest: double.tryParse(chestController.text) ?? 0,
-                        waist: double.tryParse(waistController.text) ?? 0,
-                        neck: double.tryParse(neckController.text) ?? 0,
+              SizesofBody(
+                  firsttitle: "Neck",
+                  secondtitle: "Chest",
+                  firstController: neckController,
+                  secondController: chestController),
+              const SizedBox(height: 20),
+              SizesofBody(
+                  firsttitle: "Sleeve",
+                  secondtitle: "waist",
+                  firstController: sleeveLengthController,
+                  secondController: waistController),
+              const SizedBox(height: 20),
+              SizesofBody(
+                  firsttitle: "Hips",
+                  secondtitle: "Inseam",
+                  firstController: hipController,
+                  secondController: inseamController),
+              const SizedBox(height: 20),
+              Center(
+                child: RoundButton(
+                  onpress: () {
+                    FocusScope.of(context).unfocus();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PlaceOrder(
+                          tailoremail: tailoremail,
+                          tailorname: tailorname,
+                          tailorlocation: tailorlocation,
+                          price: price,
+                          hips: double.tryParse(hipController.text) ?? 0,
+                          inseam: double.tryParse(inseamController.text) ?? 0,
+                          sleeveLength:
+                              double.tryParse(sleeveLengthController.text) ?? 0,
+                          chest: double.tryParse(chestController.text) ?? 0,
+                          waist: double.tryParse(waistController.text) ?? 0,
+                          neck: double.tryParse(neckController.text) ?? 0,
+                        ),
                       ),
-                    ),
-                  ).then((value) {
-                    hipController.clear();
-                    waistController.clear();
-                    inseamController.clear();
-                    neckController.clear();
-                    chestController.clear();
-                    sleeveLengthController.clear();
-                  });
-                },
-                title: "Details",
-                buttonColor: AppColors.primaryColor,
-              ),
-            )
-          ],
+                    ).then((value) {
+                      hipController.clear();
+                      waistController.clear();
+                      inseamController.clear();
+                      neckController.clear();
+                      chestController.clear();
+                      sleeveLengthController.clear();
+                    });
+                  },
+                  title: "Details",
+                  buttonColor: AppColors.primaryColor,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
