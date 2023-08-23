@@ -40,7 +40,14 @@ class ReceiptFunctions {
             userDetails: receiptData['userDetails'],
             userage: receiptData['userage'],
             useremail: receiptData['useremail'],
-            totalprice: receiptData['totalprice']
+            totalprice: receiptData['totalprice'],
+            neck: receiptData['neck'],
+            chest: receiptData['chest'],
+            waist: receiptData['waist'],
+            hips: receiptData['hips'],
+            inseam: receiptData['inseam'],
+            sleeveLength: receiptData['sleeve'],
+            address: receiptData['address'],
           );
           receipts.add(receipt);
         }

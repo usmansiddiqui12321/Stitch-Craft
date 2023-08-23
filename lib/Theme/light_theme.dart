@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stitch_craft/res/color.dart';
 
 ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
@@ -13,4 +14,12 @@ ThemeData lightTheme = ThemeData(
       secondary: Colors.grey[300]!),
   textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(foregroundColor: Colors.black)),
+  textSelectionTheme: TextSelectionThemeData(
+    cursorColor: AppColors.primaryColor, // Replace with your desired color
+    selectionColor: AppColors.primaryColor
+        .withOpacity(0.4), // Optional: text selection highlight color
+    selectionHandleColor:
+        AppColors.primaryColor, // Optional: text selection handle color
+  ),
+
 );

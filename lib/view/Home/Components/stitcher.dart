@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:stitch_craft/View%20Model/discount.dart';
 
 class Stitcher extends StatelessWidget {
   const Stitcher(
@@ -11,11 +13,13 @@ class Stitcher extends StatelessWidget {
       required this.onpress,
       required this.price,
       required this.description});
-  final String name, location, image, price, rating, description;
+  final String name, location, image, rating, description;
+  final int price;
   final VoidCallback onpress;
 
   @override
   Widget build(BuildContext context) {
+    //! Now we have to take Discounted Value to apply on Prices here
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: onpress,
@@ -42,10 +46,33 @@ class Stitcher extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Rs $price",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.grey[700]),
+                  ChangeNotifierProvider(
+                    create: (_) => Discount(),
+                    child: Consumer<Discount>(
+                      builder: (context, provider, child) {
+                        return FutureBuilder<bool>(
+                          future: provider
+                              .getvalue(), // Call your getvalue() method here
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const CircularProgressIndicator(); // Display a loading indicator while fetching data
+                            } else if (snapshot.hasError) {
+                              return Text('Error: ${snapshot.error}');
+                            } else {
+                              bool isAvailed = snapshot.data ?? false;
+
+                              return Text(
+                                isAvailed ? "Rs ${price * .78}" : "Rs $price",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey[700]),
+                              );
+                            }
+                          },
+                        );
+                      },
+                    ),
                   ),
                   Row(
                     children: [

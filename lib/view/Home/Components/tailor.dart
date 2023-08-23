@@ -30,7 +30,7 @@ class Tailor extends StatelessWidget {
                       name: tailor['name'],
                       image: tailor["image"],
                       rating: tailor['rating'],
-                      price: tailor['price'],
+                      price: tailor['price'] ,
                       description: tailor['description'],
                       onpress: () {
                         Navigator.push(

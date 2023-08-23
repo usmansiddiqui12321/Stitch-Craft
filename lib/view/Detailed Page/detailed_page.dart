@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:stitch_craft/View%20Model/discount.dart';
 import 'package:stitch_craft/Widgets/RoundButton.dart';
 import 'package:stitch_craft/res/color.dart';
-import 'package:stitch_craft/view/Place%20Order/place_order.dart';
+import 'package:stitch_craft/view/BodySize/body_size.dart';
 
 class DetailedPage extends StatefulWidget {
-  final String name, location, image, rating, price, description, tailoremail;
-
+  final String name, location, image, rating, description, tailoremail;
+  final int price;
   const DetailedPage({
     super.key,
     required this.name,
@@ -92,23 +94,54 @@ class _DetailedPageState extends State<DetailedPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Rs ${widget.price}",
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
+                ChangeNotifierProvider(
+                  create: (_) => Discount(),
+                  child: Consumer<Discount>(
+                    builder: (context, provider, child) {
+                      return FutureBuilder<bool>(
+                        future: provider
+                            .getvalue(), // Call your getvalue() method here
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const CircularProgressIndicator(); // Display a loading indicator while fetching data
+                          } else if (snapshot.hasError) {
+                            return Text('Error: ${snapshot.error}');
+                          } else {
+                            bool isAvailed = snapshot.data ?? false;
+
+                            return Text(
+                              isAvailed
+                                  ? "Rs ${widget.price * .78}"
+                                  : "Rs ${widget.price}",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            );
+                          }
+                        },
+                      );
+                    },
+                  ),
                 ),
+                // Text(
+                //   "Rs ${widget.price.toString()}",
+                //   style: const TextStyle(
+                //       color: Colors.white,
+                //       fontWeight: FontWeight.bold,
+                //       fontSize: 18),
+                // ),
                 RoundButton(
                   onpress: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PlaceOrder(
+                          builder: (context) => BodySize(
                             tailoremail: widget.tailoremail,
                             tailorname: widget.name,
                             tailorlocation: widget.location,
-                            price: widget.price,
+                            price: widget.price as int,
                           ),
                         ));
                   },

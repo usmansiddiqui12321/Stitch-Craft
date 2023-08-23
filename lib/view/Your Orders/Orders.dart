@@ -113,18 +113,31 @@ class ReceiptGeneration extends StatelessWidget {
             ReuseableRow(
                 detail: "${receipt['tailorlocation']}", title: "Location:"),
             const SizedBox(height: 20),
+            const Text("User Information",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: AppColors.primaryColor)),
+            const SizedBox(height: 10),
+            ReuseableRow(title: "Name:", detail: "${receipt['username']}"),
+            ReuseableRow(detail: "${receipt['userage']}", title: "Age: "),
+            ReuseableRow(detail: "${receipt['useremail']}", title: "Email"),
+            const SizedBox(height: 20),
             const Text(
-              "User Information",
+              "User Sizes",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                   color: AppColors.primaryColor),
             ),
             const SizedBox(height: 10),
-            ReuseableRow(title: "Name:", detail: "${receipt['username']}"),
-            ReuseableRow(detail: "${receipt['userage']}", title: "Age: "),
-            ReuseableRow(detail: "${receipt['useremail']}", title: "Email"),
-            const SizedBox(height: 10),
+            ReuseableRow(detail: "${receipt['neck']}", title: "Neck"),
+            ReuseableRow(detail: "${receipt['chest']}", title: "Chest"),
+            ReuseableRow(detail: "${receipt['sleeve']}", title: "Sleeves"),
+            ReuseableRow(detail: "${receipt['waist']}", title: "Waist"),
+            ReuseableRow(detail: "${receipt['hips']}", title: "Hips"),
+            ReuseableRow(detail: "${receipt['inseam']}", title: "Inseam"),
+            const SizedBox(height: 20),
             const Text(
               "Details:",
               style: TextStyle(

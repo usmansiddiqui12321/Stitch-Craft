@@ -42,7 +42,8 @@ class SignUpController extends ChangeNotifier {
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .set({
         'username': usernameController.text,
-        'email': emailController.text
+        'email': emailController.text,
+        'isAvailed' : false
       });
 
       // ignore: use_build_context_synchronously
